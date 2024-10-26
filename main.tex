@@ -23,11 +23,11 @@
 
 \begin{abstract}
 
-In the remote regions of Northern Tanzania, women and children of the Maasai Tribe walk nine hours a day to collect water for their families. Over four years, our collaborative efforts with the Maasai communities have led to installing four water harvesting units, enhancing the local socio-economic conditions by facilitating educational opportunities and economic pursuits for over 4,500 individuals within a 10-mile radius.
+In the remote regions of Northern Tanzania, women and children of the Maasai Tribe walk nine hours a day to collect water for their families. Over four years, our collaborative efforts with the Maasai communities have led to the installation of four water harvesting units, enhancing the local socio-economic conditions by facilitating educational opportunities and economic pursuits for over 4,500 individuals within a 10-mile radius.
 
-This project presents a novel approach to addressing this issue by integrating satellite data and image classification to identify densely populated areas marked by uniquely shaped Maasai homes lacking a water supply and strategizing the placement of rainwater harvesting units. The backbone of this project was developing an image classification model trained on 10,000 hand-selected satellite image samples of Bomas. This model generated a density heatmap, enabling the strategic placement of water harvesting units in the most critical locations to maximize impact.
+This project presents a novel approach to addressing this issue by integrating satellite data and image classification to identify densely populated areas marked by uniquely shaped Maasai homes lacking a water supply and planning the best placement of rainwater harvesting units. The backbone of this project was developing an image classification model trained on 10,000 hand-selected satellite image samples of Bomas. This model generated a density heat map, enabling the strategic placement of water harvesting units in the most critical locations to maximize impact.
 
-Our findings underscore the potential of satellite technology in humanitarian interventions, particularly in harder-to-reach areas where traditional surveying and data collection techniques are impractical. By leveraging remote sensing observations, we demonstrate a scalable and efficient solution for improving water accessibility in remote communities.
+Our findings underscore the potential of satellite technology in humanitarian interventions, particularly in harder-to-reach areas where traditional surveying and data collection techniques are impractical.
     
 \end{abstract}
 
@@ -37,7 +37,7 @@ Our findings underscore the potential of satellite technology in humanitarian in
 
 \subsection{Background and Context}
 
-According to the United Nations, one in four people cannot access clean water(\autocite{United_Nations}). One such community is the Maasai in the Monduli District of Tanzania. They walk over nine hours per day to fetch water and face challenges due to climate change and land deforestation. Floods and droughts are more frequent and severe, and traditional water sources, such as rivers and springs, dry up. Annual rainfall in Tanzania is equal to or higher than US, yet they face challenges in accessing water. The community has been deploying water harvesting units along the main highway, which currently helps less than 4000 people, but only for short periods. The impact of even one water harvesting unit has been validated. The challenge is that over 30,000-40,000 Maasai live across hundreds of square miles with no highways and infrastructure like electricity or water. We need a better technique to identify the living locations, assess the density, and pick the right water harvesting solution that balances cost, ease of deployment, and sustainability. This paper takes the first step in identifying the living locations across hundreds of square miles using satellite images, machine learning, and image classification models. If this approach has high precision, it can be expanded to many regions for water resource planning and management opportunities.  There is a need for sustainable water management solutions to support communities like the Maasai and other regions in Africa.
+According to the United Nations, one in four people cannot access clean water (\autocite{United_Nations}). One such community is the Maasai in the Monduli District of Tanzania. They walk over nine hours per day to fetch water and face challenges due to climate change and land deforestation. Floods and droughts are more frequent and severe, and traditional water sources, such as rivers and springs, dry up. Annual rainfall in Tanzania is equal to or higher than US, yet they face challenges in accessing water. The community has been deploying water harvesting units along the main highway, which currently helps less than 4000 people, but only for short periods. The impact of even one water harvesting unit has been validated. The challenge is that over 30,000-40,000 Maasai live across hundreds of square miles with no highways and infrastructure like electricity or water. We need a better technique to identify the living locations, assess the density, and pick the right water harvesting solution that balances cost, ease of deployment, and sustainability. This paper takes the first step in identifying the living locations across hundreds of square miles using satellite images, machine learning, and image classification models. If this approach has high precision, it can be expanded to many regions for water resource planning and management opportunities.  There is a need for sustainable water management solutions to support communities like the Maasai and other regions in Africa.
 
 \begin{figure} [H]
     \centering
@@ -48,7 +48,7 @@ According to the United Nations, one in four people cannot access clean water(\a
 
 The first water harvesting unit of 100K liters had a direct impact on the community. Specifically, kids have started coming to school more often and there is higher enrollment of students. Women have seen reduced time spent walking to fetch water and are using the extra time for social, agriculture and economic activities. Reduced walking from nine hours a day to two hours a day (Fig~\ref{fig:bef_aft_results}). 
 
-(Fig~\ref{fig:bef_aft_results}). Given the impact, multiple additional projects have been executed include deploying a 30+K liter solutions serving the Nanja village and a water filtration system in Engirgiri that makes water collected in man-made pond that catches rainwater clean for use by the local community of Maasai.
+Given the impact, multiple additional projects have been executed include deploying a 30+K liter solutions serving the Nanja village and a water filtration system in Engirgiri that makes water collected in man-made pond that catches rainwater clean for use by the local community of Maasai.
 
 \subsection{Problem Statement and Rationale}
 
@@ -259,11 +259,11 @@ As you can see in the zoomed-in photos, the images streamed to the web editor ar
     \label{fig:zoomed_google_maps}
 \end{figure}
 
-In addition, our training data may have also caused some of these inaccuracies. The dataset was very unbalanced, with 75\% of our data being photos of Bomas and only 25\% of our data being photos of the environment. The model may have been more accurate with a more balanced training set.
+In addition, our training data may have caused some of these inaccuracies. The dataset was very unbalanced, with 75\% of our data being photos of Bomas and only 25\% of our data being photos of the environment. The model may have been more accurate with a more balanced training set.
 
 \subsection{Implications and Significance}
 
-Maps like these can be used in numerous contexts, especially in other humanitarian efforts. Now that we understand the population locations better, we can use this data to structure other initiatives, like drone-based medical delivery, better road systems, or the locations of medical facilities. Other organizations, or even the Tanzanian Government, could use this data to better understand where their Indigenous populations are located.
+Maps like these can be used in numerous contexts, especially in other humanitarian efforts. Now that we understand the population locations better, we can use this data to structure other initiatives, like drone-based medical delivery, better road systems, or the locations of medical facilities. Other organizations, or even the Tanzanian Government, could use this data to understand better where their Indigenous populations are located.
 
 \subsection{Community Involvement}
 
@@ -281,7 +281,7 @@ This study has demonstrated the potential of integrating advanced satellite imag
 
 We have decided to move forward with a mix of individual and communal rainwater harvesting units in or near the locations.
 
-Future efforts should focus on refining our models' predictive accuracy by incorporating more diverse data sets and real-time environmental monitoring. Additionally, exploring partnerships with local governments and international organizations will be crucial in scaling these solutions to other similarly affected communities globally. By continuously blending technology with traditional knowledge, we can foster more resilient communities that are better equipped to manage their natural resources sustainably.
+Future efforts should focus on refining our models' predictive accuracy by incorporating more diverse data sets and real-time environmental monitoring. Additionally, exploring partnerships with local governments and international organizations will be crucial in scaling these solutions to other similarly affected communities globally. By continuously blending technology with traditional knowledge, we can foster more resilient communities better equipped to manage their natural resources sustainably.
 
 \section*{Acknowledgement}
 
