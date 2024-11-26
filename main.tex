@@ -169,11 +169,11 @@ Convolutional Layers (Conv2d): it has three layers that apply filters to the ima
 
 MaxPooling Layers: After each Conv2d Layer, there's a pooling layer that reduces the size of the filtered image by only keeping the most prominent features in each small area. This makes the model faster and focuses on the most critical parts of the image.
 
-Flattening Layer: After filtering and Pooling, the model flattens the data, turning the 2d filtered images into a long list of numbers. This prepares the data for the final classification.
+Flattening Layer: After filtering and pooling, the model flattens the data, turning the 2D filtered images into a long list of numbers. This prepares the data for the final classification.
 
-Dense Layer: There are two dense layers. It takes the flattened Layer and transforms it through another ReLU layer, reducing it to a 128-dimensional vector. This helps in capturing relationships between filtered features. Dense layers output logits, the softmax function is usually added at the end to output probabilities, providing a probability to be classified as a Boma "P(A)"
+Dense Layer: There are two dense layers. It takes the flattened Layer and transforms it through another ReLU layer, reducing it to a 128-dimensional vector. This helps in capturing relationships between filtered features. Dense layers output logits; the softmax function is usually added at the end to output probabilities, providing a probability to be classified as a Boma "P(A)"
 
-Finally, the model takes the probability from the softmax function and outputs them into a final set of 2 scores: probability it is a Boma "P(A)" and probability it isn't a Boma "1-P(A)".
+Finally, the model takes the probability from the softmax function and outputs them into a final set of 2 scores: probability it is a Boma "P(A)" and probability it isn't a Boma "1 - P(A)".
 
 \subsection{Model Testing}
 
@@ -184,7 +184,7 @@ Finally, the model takes the probability from the softmax function and outputs t
     \label{fig:Accuracy_Chart}
 \end{figure}
 
-After Training the first time with 15 epochs, the accuracy plateaus around 97\% (Fig.~\ref{fig:Accuracy_Chart}). Therefore, for future training, the model was limited to 10 epochs. Additionally, Training Loss minimizes around 12-14 epochs (Fig.~\ref{fig:Loss_Chart}).
+After training the first time with 15 epochs, the accuracy plateaus around 97\% (Fig.~\ref{fig:Accuracy_Chart}). Therefore, for future training, the model was limited to 10 epochs. Additionally, training loss minimizes around 12-14 epochs (Fig.~\ref{fig:Loss_Chart}).
 
 % \begin{table} [H]
 %     \centering
@@ -224,7 +224,7 @@ After Training the first time with 15 epochs, the accuracy plateaus around 97\% 
 \label{procedure}
 % Deploying the model?
 
-Google Earth Engine (GEE) enables an image processing technique called "Image Stacking." Typically, These stacks would allow users to perform time-series analysis, detect trends, and monitor environmental changes using satellite imagery and other geospatial data. However, there is a lesser-known technique in which the user "squashes" the highest-resolution sections together to generate exceptionally high-resolution content to read. This can be useful, especially for filling holes in scanning, removing lower-resolution mapping, or avoiding cloudy content. 
+Google Earth Engine (GEE) enables an image processing technique called "Image Stacking." Typically, these stacks would allow users to perform time-series analysis, detect trends, and monitor environmental changes using satellite imagery and other geospatial data. However, there is a lesser-known technique in which the user "squashes" the highest-resolution sections together to generate exceptionally high-resolution content to read. This can be useful, especially for filling holes in scanning, removing lower-resolution mapping, or avoiding cloudy content. 
 
 A specified sample of the Monduli district of just over 260 square miles was chosen (Fig~\ref{fig:designated_area}) and 
  it was isolated for recent times in the last four weeks (2024-02-01 to 2024-02-29). The images were manually isolated with no cloud coverage over the selection area.
@@ -315,15 +315,25 @@ In addition, the training data may have caused some of these inaccuracies. The d
 
 \subsection{Implications and Significance}
 
-Maps like these can be used in numerous contexts, especially in other humanitarian efforts. Now that the population locations is better understood, the data can be used to structure other initiatives, like drone-based medical delivery, better road systems, or the locations of medical facilities. Other organizations, or even the Tanzanian Government, could use this data to understand better where their Indigenous populations are located.
+Maps like these can be used in numerous contexts, especially in other humanitarian efforts. Now that the population locations are better understood, the data can be used to structure other initiatives, like drone-based medical delivery, better road systems, or the locations of medical facilities. Other organizations, or even the Tanzanian Government, could use this data to understand better where their Indigenous populations are located. For instance, temporal satellite data analysis can identify migration patterns in other nomadic tribes, especially to warn said tribes of dangerous events like flooding or landslides.
+
+\subsection{Ground Truth Validation}
+
+The outputs' results are being validated with the local Maasai community (a formal group of Maasai members from across the region). To simplify validation, geo-tagged pictures taken by volunteers on the ground can be cross-referenced with the outputs from the model, providing an estimate of the physical accuracy of the model.
 
 \subsection{Community Involvement}
 
-The outputs' results are being validated with local Maasai community (a formal group of Maasai members from across the region). With the validated data, the next step is to segment the map into high-density, medium-density, and low-density clusters. Identifying the best possible water access solutions is based on the size and area of the clusters.
+With the validated data, the next step is to segment the map into high-density, medium-density, and low-density clusters. Identifying the best possible water access solutions is based on the size and area of the clusters.
 
-Three types of deployment solutions are being evaluated with the community. The first is a low-cost solution of 5000-liter tanks with rainwater harvesting at a Boma. This applies to distant Bomas, which are not close to any significant water access location. The second is a sizeable 100,000-liter water harvesting solution deployed for a set of Bomas together that will be helpful for large-density/medium-density regions. The third is a man-made pond/small lake where rainwater collects, and a solar-powered pump and filtration unit provide clean water access.
+Three types of deployment solutions are being evaluated with the community. The first is a low-cost solution of 5000-liter tanks with rainwater harvesting at a Boma. This applies to distant Bomas, which are not close to any significant water access location. The second is a sizeable 100,000-liter water harvesting solution deployed for a set of Bomas together that will be helpful for large-density/medium-density regions. The third is a man-made pond/small lake where rainwater collects, and a solar-powered pump and filtration unit provides clean water access.
 
-One of the core principles of ensuring long-term sustained impact and ownership is to empower and enable the local Maasai community to pick these solutions and invest their time in the planning, deployment, and ongoing maintenance. With over 480+ Bomas and 50000 Maasai, establishing a more structured Water Council that takes accountability for equitable water use and ongoing maintenance will be crucial. This work is done with Maji Wells [Mbayani Tayai, local Maasai leader] and other local community leads.
+One of the core principles of ensuring long-term sustained impact and ownership is to empower and enable the local Maasai community to pick these solutions and invest their time in the planning, deployment, and ongoing maintenance. With over 480 Bomas and 50000 Maasai, establishing a more structured Water Council that takes accountability for equitable water use and ongoing maintenance will be crucial. This work is done with Maji Wells [Mbayani Tayai, local Maasai leader] and other local community leads.
+
+
+
+
+
+
 
 % ------------------------------------------------------------------------------------
 
@@ -331,13 +341,13 @@ One of the core principles of ensuring long-term sustained impact and ownership 
 
 This study has demonstrated the potential of integrating advanced satellite imagery analysis with traditional water management practices to significantly enhance water accessibility for the Maasai communities in Northern Tanzania. By employing TensorFlow in conjunction with Google Earth Engine, a model was developed that identifies populations. These maps can optimize water solution placement, tailoring solutions to the region's unique geographical and social structure.
 
-A mix of individual and communal rainwater harvesting units are being built in or near the locations.
+A mix of individual and communal rainwater harvesting units is being built in or near the locations.
 
 Future efforts should focus on refining the models' predictive accuracy by in corporating more diverse data sets and real-time environmental monitoring. Additionally, exploring partnerships with local governments and international organizations will be crucial in scaling these solutions to other similarly affected communities globally. By continuously blending technology with traditional knowledge, more resilient communities can be better equipped to manage their natural resources sustainably.
 
 \section*{Acknowledgement}
 
-We thank Ananya Rao (Carnegie Mellon University) for mentoring and supporting this project and Mbayani Tayai for validating ground truths in Tanzania.
+We thank Ananya Rao (Carnegie Mellon University) for mentoring and supporting this project, and Mbayani Tayai for validating ground truths in Tanzania.
 
 \printbibliography
 
