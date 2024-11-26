@@ -1,0 +1,146 @@
+\documentclass[tikz, border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning, fit, shapes.geometric, calc}
+
+% Define styles for nodes
+\tikzset{
+  process/.style={rectangle, draw, minimum width=3cm, minimum height=1cm},
+  database/.style={cylinder, shape border rotate=90, aspect=0.25, draw},
+  arrow/.style={->, thick, >=stealth, draw},
+}
+
+% Define a custom command to create vertically aligned nodes
+\newcommand{\createVerticalNodes}[4]{%
+  % #1: Name prefix for nodes
+  % #2: List of node labels
+  % #3: Starting point
+  % #4: Node style
+  \coordinate (previous) at #3;
+  \foreach \label [count=\i from 1] in {#2} {
+    \ifnum\i=1
+      \node (#1\i) [#4, below=0 of previous] {\label};
+    \else
+      \node (#1\i) [#4, below=of #1\the\numexpr\i-1\relax] {\label};
+    \fi
+  }
+}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.4cm]
+
+% Satellite Image Database and its internals
+\node (satelliteImageInternals) [process] {Satellite Image (03)};
+\node (satelliteImageMetaData) [process, below=of satelliteImageInternals] {Satellite Image Meta Data (04)};
+
+\node (satelliteImage) [process, fit={(satelliteImageInternals) (satelliteImageMetaData)}, inner sep=0.5cm, label=above:{\textbf{Satellite Image (02)}}] {};
+
+\node (satelliteDb) [database, fit={(satelliteImage)}, inner sep=0.5cm, label=above:{\textbf{Satellite Image Database (05)}}] {};
+
+
+
+
+
+
+
+
+% Dwelling Detector
+% Starting point to the right of satelliteDb
+
+\coordinate (inputProcessorStart) at ($(satelliteDb.east) + (4cm,3cm)$);
+
+\createVerticalNodes{inputProcessorNode}
+    {Training Data (02A), Validation Data (02B)}
+    {(inputProcessorStart)}
+    {process}
+
+\node (inputProcessor) [process, fit=(inputProcessorNode1) (inputProcessorNode2), label=above:\textbf{Input Processor (10)}] {};
+
+
+\coordinate (modelGeneratorStart) at ($(inputProcessor.south) + (0cm, -1cm)$);
+
+\node (model) [process, below=0 of modelGeneratorStart] {Model (12)};
+
+\node (modelGenerator) [process, fit=(model), label=above:\textbf{Model Generator (11)}] {};
+
+
+\coordinate (dwellingStart) at ($(inputProcessor.east)+(2cm,1cm)$);
+
+% Use the custom command to create vertical nodes within the Dwelling Detector
+\createVerticalNodes{dwellingNode}
+  {Output Processor (14), Temporal Analyzer (54), Clustering Process (16)}
+  {(dwellingStart)}
+  {process}
+
+% Fit a node around the created nodes to represent the Dwelling Detector
+\node (dwellingDetector) [process, fit=(inputProcessor) (modelGenerator) (dwellingNode3), inner sep=0.5cm, label=above:{\textbf{Dwelling Detector (01)}}] {};
+
+
+
+% Model Database and its internals
+\coordinate (modelDbStart) at ($(dwellingDetector.east) + (4cm, 4cm)$);
+
+\createVerticalNodes{modelDbNode}
+    {Parameters (21), Weights (22)}
+    {(modelDbStart)}
+    {process}
+
+\node (modelDb) [database, fit=(modelDbNode1) (modelDbNode2), inner sep=0.5cm, label=above:{\textbf{Model Database (20)}}] {};
+
+
+
+% Dwelling Database and its internals
+\coordinate (dwellingDbStart) at ($(modelDb.south) + (0cm, -3cm)$);
+
+\createVerticalNodes{dwellingDbNode}
+    {Dwelling Location (41), Clustering of Dwellings (45)}
+    {(dwellingDbStart)}
+    {process}
+
+\node (dwellingDb) [database, fit=(dwellingDbNode1) (dwellingDbNode2), inner sep=0.5cm, label=above:{\textbf{Dwelling Database (40)}}] {};
+
+
+% Dwelling Metadata
+\coordinate (dwMetadataStart) at ($(modelDb.east) + (4cm, -3.5cm)$);
+
+\createVerticalNodes{metadataNode}
+    {Geographical Location (42), Time Stamp (43), Resource Instruction (44)}
+    {(dwMetadataStart)}
+    {process}
+
+\node (metadataContainer) [process, fit=(metadataNode1) (metadataNode3), inner sep=0.5cm] {};
+
+
+
+% Resource Provisioning Unit and its internals
+
+\coordinate (resourceStart) at ($(modelDb.east) + (4cm, 2cm)$);
+
+\createVerticalNodes{resourceNode}
+    {Water Consumption Estimation (51), Water Unit Calculator (52)}
+    {(resourceStart)}
+    {process}
+
+\node (resourceProvisioningUnit) [process, fit=(resourceNode1) (resourceNode2), inner sep=0.5cm, label=above:{\textbf{Resource Provisioning Unit (50)}}] {};
+
+
+
+
+
+
+% Connectors
+\draw [arrow] (satelliteDb) -- (inputProcessor);
+\draw [arrow] (inputProcessor) -- (modelGenerator);
+\draw [arrow] (model) -- (dwellingNode1);
+\draw [arrow] (model) -- (modelDb);
+\draw [arrow] (modelDb) -- (model);
+\draw [arrow] (dwellingNode1) -- (dwellingDbNode1);
+\draw [arrow] (dwellingNode3) -- (dwellingDbNode2);
+\draw [arrow] (dwellingDbNode2) -- (dwellingNode3);
+\draw [arrow] (dwellingDbNode1) -- (metadataNode1);
+\draw [arrow] (dwellingDbNode1) -- (metadataNode2);
+\draw [arrow] (dwellingDbNode1) -- (metadataNode3);
+\draw [arrow] (dwellingDb) -- (resourceProvisioningUnit)
+
+\end{tikzpicture}
+
+\end{document}
