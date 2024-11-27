@@ -26,11 +26,7 @@
 
 \begin{abstract}
 
-In the remote regions of Northern Tanzania, women and children of the Maasai Tribe walk nine hours a day to collect water for their families. Over four years, the collaborative efforts with the Maasai communities have led to the installation of four water harvesting units, enhancing the local socio-economic conditions by facilitating educational opportunities and economic pursuits for over 4,500 individuals within a 10-mile radius.
-
-This project presents a novel approach to addressing this issue by integrating satellite data and image classification to identify densely populated areas marked by uniquely shaped Maasai homes lacking a water supply and planning the best placement of rainwater harvesting units. The backbone of this project was developing an image classification model trained on 10,000 hand-selected satellite image samples of Bomas. This model generated a density heat map, enabling the strategic placement of water harvesting units in the most critical locations to maximize impact.
-
-Our findings underscore the potential of satellite technology in humanitarian interventions, particularly in harder-to-reach areas where traditional surveying and data collection techniques are impractical.
+In the remote regions of Northern Tanzania, women and children of the Maasai Tribe walk nine hours a day to collect water for their families. Over four years, the collaborative efforts with the Maasai communities have led to the installation of four water harvesting units, enhancing the local socio-economic conditions by facilitating educational opportunities and economic pursuits for over 4,500 individuals within a 10-mile radius. This project presents a novel approach to addressing this issue by integrating satellite data and image classification to identify densely populated areas marked by uniquely shaped Maasai homes lacking a water supply and planning the best placement of rainwater harvesting units. The backbone of this project was developing an image classification model trained on 10,000 hand-selected satellite image samples of Bomas. This model generated a density heat map, enabling the strategic placement of water harvesting units in the most critical locations to maximize impact. Our findings underscore the potential of satellite technology in humanitarian interventions, particularly in harder-to-reach areas where traditional surveying and data collection techniques are impractical.
     
 \end{abstract}
 
@@ -49,9 +45,9 @@ According to the United Nations, one in four people cannot access clean water (\
     \label{fig:bef_aft_results}
 \end{figure}
 
-The first water harvesting unit of 100K liters had a direct impact on the community. Specifically, kids have started coming to school more often and there is higher enrollment of students. Women have seen reduced time spent walking to fetch water and are using the extra time for social, agriculture and economic activities. Reduced walking from nine hours a day to two hours a day (Fig~\ref{fig:bef_aft_results}). 
+The first water harvesting unit of 100K liters directly impacted the community. Specifically, kids have started coming to school more often, and there is higher enrollment of students. Women have seen reduced walking time to fetch water and use the extra time for social, agricultural, and economic activities and reduced walking from nine to two hours a day (Fig~\ref{fig:bef_aft_results}). 
 
-Given the impact, multiple additional projects have been executed include deploying a 30+K liter solutions serving the Nanja village and a water filtration system in Engirgiri that makes water collected in man-made pond that catches rainwater clean for use by the local community of Maasai.
+Given the impact, multiple additional projects have been executed, including deploying a 30+K liter water harvesting unit serving the Nanja village. Additionally, a water filtration system in Engirgiri sanitizes water collected in man-made ponds in the area.
 
 
 % ------------------------------------------------------------------------------------
@@ -61,7 +57,7 @@ Given the impact, multiple additional projects have been executed include deploy
 
 % This isn't a problem statement
 
-To support water harvesting solutions for 30,000-50,000 Maasai, identifying the best places to locate them across 300-500 square miles was the primary concern. The best water harvesting solutions would ideally be based on the population's density distribution, and nearby available water resources. However, the government does not provide accessible maps of the Maasai's location. To design and plan solutions at scale,satellite images and image classification helped to create a population map and validate the maps with local community involvement. The next step would be identifying the best locations for placing the water harvesting solutions.
+The primary concern was to support 30,000-50,000 Maasai, identifying the best places to place rainwater harvesting units across 300-500 square miles. Ideally, the best water harvesting solutions would be based on the population's density distribution and nearby available water resources. However, the government does not provide accessible maps of the Maasai's location. So, to design and plan solutions at scale, satellite images and image classification helped to create a map of Maasai dwellings and validate the maps with local community involvement. The next step would be identifying the best locations for placing the water harvesting solutions.
 
 
 
@@ -92,7 +88,9 @@ The study will be limited to a selected area of about 250 sq. miles. In addition
 
 Due to their polygamous nature, familial groups live together in large units called "Bomas." 
 
-A Boma is a unique structure that is difficult to classify. There is no precise size to a Boma, but it usually consists of multiple small huts, a section for keeping goats and cows safe at night. There are a few characteristics that define a Boma. An outer barrier, usually made from rough bushes. Inside, there may be trees or other structures, such as shelters. At the center will be a smaller circle, also created with bushes, where cattle stay. These Bomas can house 10 to 50 people and sometimes be squares or other shapes, even open ones. Families who own cattle create an inner or outer circle or circles with other things, such as trees. Another issue is the contrast of the bushes with the environment, sometimes not showing up. (Fig~\ref{fig:types_of_bomas})
+A Boma is a unique structure that is difficult to classify. There is no precise size to a Boma, but it usually consists of multiple small huts and a section for keeping goats and cows safe at night. A few characteristics define a Boma: an outer barrier, traditionally made from rough bushes, trees, or other structures, such as shelters inside. At the center will be a smaller circle, also created with bushes, where cattle stay. These Bomas can house 10 to 50 people and sometimes appear square or in other shapes. Another issue is the contrast of the bushes with the environment, sometimes not showing up in typical color imagery (Fig~\ref{fig:types_of_bomas}). As a result, hyperspectral or infrared imagery is utilized due to its ability to differentiate between vegetation and soil.
+
+
 
 \subsubsection{Literature Review}
 
@@ -142,17 +140,15 @@ Two different sources were considered for the training data. One was the Coperni
 
 \subsubsection{Collection}
 
-2000 photos of Bomas and 500 photos of the environment (Omits a Boma) was the first iteration of training data. The accuracy was around 30\%, far below the required standards. The model needed help with a few problems. First, The color of the Boma circle blended in too well with the environment. Second, There wasn’t enough data to train the AI.
-
+2000 photos of Bomas and 500 photos of the environment (Omits a Boma) was the first iteration of training data. The training accuracy was around 30\%, far below the required standards. The model needed help with a few problems. First, The color of the Boma circle blended in too well with the environment. Second, There wasn’t enough data to train the AI.
 
 \subsubsection{Augmentation}
 
-A key insight employed was the fact that these images could be superimposed, meaning they could be rotated and flipped to create more training data for the model. Using this new information, 6,000 more photos of Bomas and 1500 more images of the environment were generated. With this new model trained at 10,000 images, the accuracy skyrocketed to 93\%. Because these "Bomas" are often disguised and varied, more training would not increase the accuracy further. The model plateaus with the current constitution at a certain point due to the extreme shape, color, and size variation. Toggling with filters, cropping, grayscale, or increasing the contrast did not impact the accuracy. Perhaps more fine-tuning is necessary, but it's unlikely to change performance significantly.
+A key insight employed was the fact that these images could be superimposed, meaning they could be rotated and flipped to create more training data for the model. Using this new information, 6,000 more photos of Bomas and 1500 more images of the environment were generated. With this new model trained at 10,000 images, the accuracy skyrocketed to 92.1\%. Because these "Bomas" are often disguised and varied, more training would not increase the accuracy further. The model plateaus with the current constitution at a certain point due to the extreme shape, color, and size variation. Toggling with filters, cropping, grayscale, or increasing the contrast did not impact the accuracy. Perhaps more fine-tuning is necessary, but it's unlikely to change performance significantly.
 
 \subsection{Model Training}
 \label{training}
-
-A generic CNN model from the TensorFlow documentation was chosen for the model. No hyperparameters were tuned and there was no change to any particular activation functions. Each Image is 100x100 with 3 color channels: Red, Green and Blue. The model takes in the image and outputs confidence in each class that it could be (Fig~\ref{fig:model_shape}).
+ confidence in each class that it could be (Fig~\ref{fig:model_shape}).
 
 \begin{figure} [H] % Put in diagram of the model
     \centering
@@ -161,19 +157,9 @@ A generic CNN model from the TensorFlow documentation was chosen for the model. 
     \label{fig:model_shape}
 \end{figure}
 
-The model, in particular, is a generic CNN model that can classify objects with relatively minimal training. Here's a quick explanation of each layer's function in the model.
+The model architecture is a straightforward Convolutional Neural Network (CNN) designed for image classification. The input images, resized to 100x100 pixels with three color channels (RGB), undergo a series of transformations through the network. A rescaling layer normalizes the pixel values between 0 and 1 to standardize the input data. Three convolutional layers with ReLU activation extract features such as edges and patterns, particularly those indicative of circular or closed shapes resembling the structure of a Boma. MaxPooling layers follow each convolutional layer, reducing the dimensionality of the feature maps and focusing on the most prominent features. The resulting feature maps are then flattened into a one-dimensional vector and passed through two dense layers, with the final dense layer outputting logits for classification into two categories: “boma” or “notboma.”
 
-Resizing layer: Rescale all the image values between 0 and 1 to normalize all of the values. This is done to ensure that all features are within the same scale.
-
-Convolutional Layers (Conv2d): it has three layers that apply filters to the image to highlight features like edges, textures, or patterns. In this case, it most likely filters for circular or closed shapes similar to the shape of the Boma.
-
-MaxPooling Layers: After each Conv2d Layer, there's a pooling layer that reduces the size of the filtered image by only keeping the most prominent features in each small area. This makes the model faster and focuses on the most critical parts of the image.
-
-Flattening Layer: After filtering and pooling, the model flattens the data, turning the 2D filtered images into a long list of numbers. This prepares the data for the final classification.
-
-Dense Layer: There are two dense layers. It takes the flattened Layer and transforms it through another ReLU layer, reducing it to a 128-dimensional vector. This helps in capturing relationships between filtered features. Dense layers output logits; the softmax function is usually added at the end to output probabilities, providing a probability to be classified as a Boma "P(A)"
-
-Finally, the model takes the probability from the softmax function and outputs them into a final set of 2 scores: probability it is a Boma "P(A)" and probability it isn't a Boma "1 - P(A)".
+The model was trained on 10,064 images, with 8,052 images used for training and 2,012 for validation, using a batch size of 32. The training was performed over 15 epochs, with the Adam optimizer and Sparse Categorical Crossentropy as the loss function. The model achieved a steady improvement in accuracy and loss during training, plateauing around epoch 12-14.
 
 \subsection{Model Testing}
 
@@ -183,8 +169,6 @@ Finally, the model takes the probability from the softmax function and outputs t
     \caption{Accuracy over 15 epochs}
     \label{fig:Accuracy_Chart}
 \end{figure}
-
-After training the first time with 15 epochs, the accuracy plateaus around 97\% (Fig.~\ref{fig:Accuracy_Chart}). Therefore, for future training, the model was limited to 10 epochs. Additionally, training loss minimizes around 12-14 epochs (Fig.~\ref{fig:Loss_Chart}).
 
 % \begin{table} [H]
 %     \centering
@@ -216,6 +200,12 @@ After training the first time with 15 epochs, the accuracy plateaus around 97\% 
     \caption{Loss over 15 Epochs}
     \label{fig:Loss_Chart}
 \end{figure}
+
+The model’s training and validation performance indicate effective learning but also highlight areas for refinement. After 15 epochs, the training accuracy reached 98.5\%, while validation accuracy plateaued at 92.1\%. The corresponding validation loss also stabilized, reflecting a good fit to the data without significant overfitting. A plot of training accuracy over epochs demonstrates consistent improvement, while the validation accuracy remains slightly lower, indicating room for further optimization. Training loss reduced significantly during the first few epochs before leveling off, with a similar trend observed in the validation loss. These results suggest that while the model generalizes well, there may be opportunities to fine-tune hyperparameters or explore additional regularization techniques to improve validation performance further.
+
+\subsection{Model Performance}
+
+The model demonstrated strong overall performance, achieving an accuracy of 92.1\% on the validation dataset. However, the confusion matrix reveals class-specific strengths and weaknesses: the model correctly classified 1,741 “notboma” images while misclassifying 104 as “boma.” For the “boma” class, it correctly identified 112 images but failed to recognize 55, leading to an imbalance in classification metrics. The precision for the “boma” class was 51.9\%, indicating a relatively high rate of false positives, while the recall was 67.1\%, showing the model effectively captured most “boma” instances. The F1 score of 58.5\% reflects this trade-off between precision and recall. These results suggest that while the model is a good baseline, further improvements could focus on increasing precision, potentially through strategies like data augmentation, addressing class imbalance, or refining the architecture.
 
 
 % ------------------------------------------------------------------------------------
@@ -319,7 +309,7 @@ Maps like these can be used in numerous contexts, especially in other humanitari
 
 \subsection{Ground Truth Validation}
 
-The outputs' results are being validated with the local Maasai community (a formal group of Maasai members from across the region). To simplify validation, geo-tagged pictures taken by volunteers on the ground can be cross-referenced with the outputs from the model, providing an estimate of the physical accuracy of the model.
+The outputs' results are being validated with the local Maasai community (a formal group of Maasai members from across the region). To simplify validation, geo-tagged pictures taken by volunteers on the ground will be cross-referenced with the outputs from the model, providing an estimate of the physical accuracy of the model.
 
 \subsection{Community Involvement}
 
